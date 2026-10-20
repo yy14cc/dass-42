@@ -7,10 +7,10 @@
 <link rel="stylesheet" href="style.css">
 <script>(function(){var t;try{t=localStorage.getItem("theme")}catch(e){}document.documentElement.dataset.theme=t||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light")})()</script>
 <style>
-#ping{border:1px solid var(--acc);background:var(--acc);color:#fff;border-radius:8px;padding:8px 18px;cursor:pointer;font:inherit;font-size:.92rem}
-#ping:disabled{opacity:.6;cursor:wait}
-#pingOut{margin:12px 0 0;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);font-size:.85rem;white-space:pre-wrap;word-break:break-all;min-height:2.6em}
-#pingOut.err{color:#b91c1c;border-color:#b91c1c}
+#ping,#askBtn{border:1px solid var(--acc);background:var(--acc);color:#fff;border-radius:8px;padding:8px 18px;cursor:pointer;font:inherit;font-size:.92rem}
+#ping:disabled,#askBtn:disabled{opacity:.6;cursor:wait}
+#pingOut,#askOut{margin:12px 0 0;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);font-size:.85rem;white-space:pre-wrap;word-break:break-all;min-height:2.6em}
+#pingOut.err,#askOut.err{color:#b91c1c;border-color:#b91c1c}
 </style>
 </head>
 <body>
@@ -30,6 +30,11 @@
   <div class="card">
     <button id="ping" type="button">測試連線</button>
     <pre id="pingOut" aria-live="polite">尚未測試</pre>
+  </div>
+
+  <div class="card">
+    <button id="askBtn" type="button">測試 Gemini</button>
+    <pre id="askOut" aria-live="polite">尚未測試</pre>
   </div>
 </main>
 <footer class="foot"><div class="foot-in">
@@ -52,6 +57,24 @@ const WORKER_URL="https://dass-42.d84121213-657.workers.dev/";
       try{data=JSON.parse(text)}catch(e){}
       if(!res.ok)show("連線失敗（HTTP "+res.status+"）："+((data&&data.error)||text||res.statusText),true);
       else show("HTTP "+res.status+"\n"+(data?JSON.stringify(data,null,2):text));
+    }catch(e){
+      show("連線失敗："+e.message+"\n請確認 Worker 網址是否正確、網路是否正常。",true);
+    }finally{btn.disabled=false}
+  };
+})();
+
+(function(){
+  var QUESTION="請用一句話自我介紹";
+  var btn=document.getElementById("askBtn"), out=document.getElementById("askOut");
+  function show(t,err){out.textContent=t;out.className=err?"err":""}
+  btn.onclick=async function(){
+    btn.disabled=true;show("Gemini 思考中…");
+    try{
+      var res=await fetch(WORKER_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"ask",question:QUESTION})});
+      var text=await res.text(), data;
+      try{data=JSON.parse(text)}catch(e){}
+      if(!res.ok||!data||!data.ok)show("失敗（HTTP "+res.status+"）："+((data&&data.error)||text||res.statusText),true);
+      else show(data.answer);
     }catch(e){
       show("連線失敗："+e.message+"\n請確認 Worker 網址是否正確、網路是否正常。",true);
     }finally{btn.disabled=false}
