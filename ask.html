@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>問答｜年齡與憂鬱、焦慮、壓力的關係</title>
+<link rel="stylesheet" href="style.css">
+<script>(function(){var t;try{t=localStorage.getItem("theme")}catch(e){}document.documentElement.dataset.theme=t||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light")})()</script>
+</head>
+<body>
+<header class="nav"><div class="nav-in">
+  <a class="brand" href="index.html">DASS 年齡研究</a>
+  <nav aria-label="主要導覽"><a href="index.html">首頁</a><a href="results.html">研究結果</a><a href="ask.html" aria-current="page">問答</a><a href="about.html">關於研究</a></nav>
+  <button id="theme" type="button" aria-label="切換夜覽模式"></button>
+</div></header>
+<main>
+  <h1>問答</h1>
+  <div class="card soon">
+    <span class="badge">即將推出</span>
+    <h2>問答功能準備中</h2>
+    <p>未來可在這裡針對研究內容與結果提問。目前請先到「研究結果」查看圖表與數據，或到「關於研究」了解資料來源與方法。</p>
+  </div>
+</main>
+<footer class="foot"><div class="foot-in">
+  <div>組別：<span class="todo">（請填入組別）</span></div>
+  <div>組員：<span class="todo">（請填入組員姓名）</span></div>
+</div></footer>
+<script>
+(function(){var b=document.getElementById("theme"),r=document.documentElement;function l(){b.textContent=r.dataset.theme=="dark"?"☀ 日間模式":"🌙 夜覽模式"}b.onclick=function(){r.dataset.theme=r.dataset.theme=="dark"?"light":"dark";try{localStorage.setItem("theme",r.dataset.theme)}catch(e){}l()};l()})();
+</script>
+</body>
+</html>

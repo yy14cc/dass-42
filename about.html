@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>關於研究｜年齡與憂鬱、焦慮、壓力的關係</title>
+<link rel="stylesheet" href="style.css">
+<script>(function(){var t;try{t=localStorage.getItem("theme")}catch(e){}document.documentElement.dataset.theme=t||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light")})()</script>
+</head>
+<body>
+<header class="nav"><div class="nav-in">
+  <a class="brand" href="index.html">DASS 年齡研究</a>
+  <nav aria-label="主要導覽"><a href="index.html">首頁</a><a href="results.html">研究結果</a><a href="ask.html">問答</a><a href="about.html" aria-current="page">關於研究</a></nav>
+  <button id="theme" type="button" aria-label="切換夜覽模式"></button>
+</div></header>
+<main class="prose">
+  <h1>關於研究</h1>
+
+  <h2>資料來源</h2>
+  <div class="card prose">
+    <ul>
+      <li>資料來自線上版 DASS（憂鬱焦慮壓力量表，Depression Anxiety Stress Scales）的公開問卷，於 2017–2019 年蒐集。</li>
+      <li>問卷開放給任何人填寫，填答者多是為了取得個人化的測驗結果而參與。測驗結束後可選擇填寫簡短的研究問卷，本資料僅包含同意填寫、且對「是否提供準確答案並同意用於研究」回答「是」的人。</li>
+      <li>研究問卷另含人口統計題目等其他項目，本網頁使用其中的「年齡」與 DASS 42 題的作答結果。</li>
+      <li>整理後的統計資料存放在 Google Sheets（分頁包含原始資料、數值化、清洗後、年齡層統計），「研究結果」頁每次開啟時會讀取「年齡層統計」分頁的最新內容。</li>
+    </ul>
+  </div>
+
+  <h2>研究方法</h2>
+  <div class="card prose">
+    <ul>
+      <li><b>量表</b>：DASS 共 42 題，憂鬱、焦慮、壓力各 14 題；填答者回想「過去一週」各描述符合自己的頻率，以四個選項作答。</li>
+      <li><b>計分</b>：每題換算為 0–3 分，各分量表 14 題加總為 0–42 分，分數越高代表症狀越嚴重。</li>
+      <li><b>年齡分組</b>：以每 10 歲為一組（例如 10–19），圖表只顯示有人數的組別。</li>
+      <li><b>平均數比較</b>：計算各年齡組在各分量表的平均數與標準差，並以 t 分布計算 95% 信賴區間（平均數 ± t × SD／√n）。</li>
+      <li><b>嚴重度分布</b>：依 DASS 的分數切分點，將各分量表分數分為正常、輕度、中度、重度、極重度五個等級，並計算各等級占該年齡組的百分比。</li>
+      <li><b>資料清洗規則</b>：<span class="todo">（請組員補充：刪除或排除哪些資料、判斷標準為何）</span></li>
+    </ul>
+  </div>
+
+  <h2>樣本限制</h2>
+  <div class="card prose">
+    <ul>
+      <li><b>非隨機樣本</b>：填答者為自願參與的網路使用者，不能代表整體人口，結果不宜直接推論到一般民眾。</li>
+      <li><b>自我報告</b>：分數來自填答者自評，可能受記憶、當下心情或作答態度影響。</li>
+      <li><b>橫斷面資料</b>：只呈現不同年齡組在同一時期的差異，不能說明個人隨年齡增長的變化，也不能推論因果。</li>
+      <li><b>人數不均</b>：各年齡組人數可能相差很大，人數少的組別平均數與信賴區間不穩定，解讀時需特別謹慎。</li>
+      <li><b>重複填答</b>：資料無法完全排除同一人重複作答的情形。</li>
+      <li><b>非診斷工具</b>：嚴重度等級僅用於描述分數區間，不能作為臨床診斷。</li>
+    </ul>
+  </div>
+</main>
+<footer class="foot"><div class="foot-in">
+  <div>組別：<span class="todo">（請填入組別）</span></div>
+  <div>組員：<span class="todo">（請填入組員姓名）</span></div>
+</div></footer>
+<script>
+(function(){var b=document.getElementById("theme"),r=document.documentElement;function l(){b.textContent=r.dataset.theme=="dark"?"☀ 日間模式":"🌙 夜覽模式"}b.onclick=function(){r.dataset.theme=r.dataset.theme=="dark"?"light":"dark";try{localStorage.setItem("theme",r.dataset.theme)}catch(e){}l()};l()})();
+</script>
+</body>
+</html>
